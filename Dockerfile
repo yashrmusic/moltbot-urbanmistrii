@@ -1,0 +1,30 @@
+# Moltbot 24/7 Deployment Dockerfile
+FROM node:22-slim
+
+# Install dependencies for WhatsApp/Puppeteer
+RUN apt-get update && apt-get install -y \
+    libnss3 \
+    libatk-bridge2.0-0 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxrandr2 \
+    libgbm1 \
+    libasound2 \
+    libpangocairo-1.0-0 \
+    libxshmfence1 \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Install Moltbot globally
+RUN npm install -g clawdbot
+
+# Copy configuration and workspace
+COPY .clawdbot /root/.clawdbot
+COPY workspace /app/workspace
+
+# Expose Gateway port
+EXPOSE 18789
+
+# Start Moltbot Gateway
+CMD ["clawdbot", "gateway"]

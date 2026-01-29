@@ -1,0 +1,93 @@
+{
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "agents": {
+    "defaults": {
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      },
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "workspace": "C:\\Users\\Asus\\clawd",
+      "model": {
+        "primary": "google/gemini-2.5-flash"
+      }
+    }
+  },
+  "gateway": {
+    "mode": "local",
+    "auth": {
+      "mode": "token",
+      "token": "0189e4e6a5381635fcd090b1dbc63ba98542577f5f5abb4c"
+    },
+    "port": 18789,
+    "bind": "loopback",
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    }
+  },
+  "auth": {
+    "profiles": {
+      "google:default": {
+        "provider": "google",
+        "mode": "api_key"
+      }
+    }
+  },
+  "plugins": {
+    "entries": {
+      "whatsapp": {
+        "enabled": true
+      }
+    }
+  },
+  "channels": {
+    "whatsapp": {
+      "selfChatMode": true,
+      "dmPolicy": "allowlist",
+      "allowFrom": [
+        "+919312943581"
+      ]
+    }
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "bun"
+    },
+    "entries": {
+      "nano-banana-pro": {
+        "apiKey": "AIzaSyCnmerxwYYt0vHPM6BWhxGljS2NRhzPpOM"
+      }
+    }
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "boot-md": {
+          "enabled": true
+        },
+        "command-logger": {
+          "enabled": true
+        },
+        "session-memory": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "wizard": {
+    "lastRunAt": "2026-01-29T07:55:09.895Z",
+    "lastRunVersion": "2026.1.24-3",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.1.24-3",
+    "lastTouchedAt": "2026-01-29T07:55:09.911Z"
+  }
+}
