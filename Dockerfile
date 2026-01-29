@@ -1,7 +1,7 @@
 # Moltbot 24/7 Deployment Dockerfile
 FROM node:22-slim
 
-# Install dependencies for WhatsApp/Puppeteer
+# Install dependencies for WhatsApp/Puppeteer + Python
 RUN apt-get update && apt-get install -y \
     libnss3 \
     libatk-bridge2.0-0 \
@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y \
     libasound2 \
     libpangocairo-1.0-0 \
     libxshmfence1 \
+    python3 \
+    python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app

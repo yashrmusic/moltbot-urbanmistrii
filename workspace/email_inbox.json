@@ -1,0 +1,8 @@
+{
+  "mail@urbanmistrii.com": {
+    "error": "b'[AUTHENTICATIONFAILED] Invalid credentials (Failure)'"
+  },
+  "hr@urbanmistrii.com": {
+    "error": "b'[ALERT] Application-specific password required: https://support.google.com/accounts/answer/185833 (Failure)'"
+  }
+}
