@@ -1,5 +1,5 @@
 # Moltbot 24/7 Deployment Dockerfile
-FROM node:22-slim
+FROM node:22
 
 # Install dependencies for WhatsApp/Puppeteer + Python
 RUN apt-get update && apt-get install -y \
