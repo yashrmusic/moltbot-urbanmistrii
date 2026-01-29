@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
     libxshmfence1 \
     python3 \
     python3-pip \
+    git \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /app/requirements.txt
