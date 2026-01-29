@@ -22,8 +22,11 @@ RUN pip3 install -r /app/requirements.txt --break-system-packages
 
 WORKDIR /app
 
-# Install Moltbot globally
-RUN npm install -g clawdbot
+# Increase Node memory for large install
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+
+# Install Moltbot globally with verbose logging to debug if it hangs
+RUN npm install -g clawdbot --loglevel verbose
 
 # Copy configuration and workspace
 COPY .clawdbot /root/.clawdbot
