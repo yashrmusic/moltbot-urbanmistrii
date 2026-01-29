@@ -19,10 +19,10 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# Copy package files first (for efficient caching)
+# Copy package files first
 COPY package.json ./
 
-# Install dependencies (Railway handles memory better this way)
+# Install dependencies with strict production flag (lighter)
 RUN npm install --omit=dev --loglevel verbose
 
 # Copy Python requirements & install
