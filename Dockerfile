@@ -1,7 +1,7 @@
 # Moltbot 24/7 Deployment Dockerfile
 FROM node:22
 
-# Install dependencies for WhatsApp/Puppeteer + Python
+# Install system dependencies + Python
 RUN apt-get update && apt-get install -y \
     libnss3 \
     libatk-bridge2.0-0 \
@@ -17,23 +17,26 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt /app/requirements.txt
-RUN pip3 install -r /app/requirements.txt --break-system-packages
-
 WORKDIR /app
 
-# Increase Node memory for large install
-ENV NODE_OPTIONS="--max-old-space-size=4096"
+# Copy package files first (for efficient caching)
+COPY package.json ./
 
-# Install Moltbot globally with verbose logging to debug if it hangs
-RUN npm install -g clawdbot --loglevel verbose
+# Install dependencies (Railway handles memory better this way)
+RUN npm install --omit=dev --loglevel verbose
 
-# Copy configuration and workspace
-COPY .clawdbot /root/.clawdbot
-COPY workspace /app/workspace
+# Copy Python requirements & install
+COPY requirements.txt ./
+RUN pip3 install -r requirements.txt --break-system-packages
+
+# Copy the rest of the project
+COPY . .
+
+# Copy the local .clawdbot config to the root (where Moltbot expects it)
+RUN cp -r .clawdbot /root/.clawdbot
 
 # Expose Gateway port
 EXPOSE 18789
 
-# Start Moltbot Gateway
-CMD ["clawdbot", "gateway"]
+# Start via npm script
+CMD ["npm", "start"]
