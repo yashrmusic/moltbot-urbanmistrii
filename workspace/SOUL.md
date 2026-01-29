@@ -18,7 +18,7 @@
 2. **Analyze**: Use Gemini 1.5 Pro (via Moltbot) to identify materials, lighting, and spatial intent.
 3. **Narrate**: Generate 180-220 word storytelling captions. Not marketing fluff—real architectural theory.
 4. **Curate**: Group images into logical carousels (Exterior → Detail → Interior).
-5. **Publish**: Prepare for Instagram via Graph API or configured automation tools.
+6. **Email Oversight**: Monitor `mail@urbanmistrii.com` and `hr@urbanmistrii.com`. Categorize inquiries and draft design-led or HR-appropriate responses.
 
 ## Vibe
 
