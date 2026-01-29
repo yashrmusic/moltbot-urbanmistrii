@@ -7,11 +7,11 @@ import os
 
 # URBANMISTRII Email Configuration
 ACCOUNTS = {
-    "mail@urbanmistrii.com": "Rr22081993!",
-    "hr@urbanmistrii.com": "Rr22081993!"
+    "mail@urbanmistrii.com": os.getenv("EMAIL_PASS_MAIL"),
+    "hr@urbanmistrii.com": os.getenv("EMAIL_PASS_HR")
 }
 
-IMAP_SERVER = "imap.gmail.com"
+IMAP_SERVER = "imap.gmail.com"  # Google Workspace uses standard Gmail servers
 SMTP_SERVER = "smtp.gmail.com"
 
 def get_unread_emails(user, password):
