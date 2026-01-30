@@ -41,4 +41,4 @@ ENV NODE_OPTIONS="--max-old-space-size=1024"
 EXPOSE 18789
 
 # Start command with better error handling
-CMD ["sh", "-c", "npm start 2>&1 || (echo 'npm start failed'; sleep 10; exit 1)"]
+CMD ["npm", "start"]
