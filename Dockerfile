@@ -35,7 +35,7 @@ RUN pip3 install -r requirements.txt --break-system-packages
 COPY . .
 
 # Environment variable to handle memory safely
-ENV NODE_OPTIONS="--max-old-space-size=1024"
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 
 # Expose Gateway port
 EXPOSE 18789
