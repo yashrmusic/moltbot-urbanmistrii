@@ -1,5 +1,7 @@
-# Moltbot 24/7 Deployment Dockerfile
 FROM node:22
+
+LABEL language="nodejs"
+LABEL framework="clawdbot"
 
 # Install system dependencies + Python
 RUN apt-get update && apt-get install -y \
@@ -32,13 +34,11 @@ RUN pip3 install -r requirements.txt --break-system-packages
 # Copy the rest of the project
 COPY . .
 
-# Config is handled by npm start script now
-
 # Environment variable to handle memory safely
 ENV NODE_OPTIONS="--max-old-space-size=1024"
 
 # Expose Gateway port
 EXPOSE 18789
 
-# Start command
-CMD ["npm", "start"]
+# Start command with better error handling
+CMD ["sh", "-c", "npm start 2>&1 || (echo 'npm start failed'; sleep 10; exit 1)"]
