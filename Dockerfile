@@ -19,10 +19,10 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# Copy package files first
+# Copy package files
 COPY package.json ./
 
-# Install dependencies with strict production flag (lighter)
+# Install dependencies
 RUN npm install --omit=dev --loglevel verbose
 
 # Copy Python requirements & install
@@ -32,11 +32,14 @@ RUN pip3 install -r requirements.txt --break-system-packages
 # Copy the rest of the project
 COPY . .
 
-# Copy the local .clawdbot config to the root (where Moltbot expects it)
-RUN cp -r .clawdbot /root/.clawdbot
+# Copy config to the location Moltbot expects
+RUN mkdir -p /root/.clawdbot && cp -r .clawdbot/* /root/.clawdbot/ || true
+
+# Environment variable to handle memory safely
+ENV NODE_OPTIONS="--max-old-space-size=1024"
 
 # Expose Gateway port
 EXPOSE 18789
 
-# Start via npm script
+# Start command
 CMD ["npm", "start"]
