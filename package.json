@@ -4,7 +4,7 @@
     "description": "Headless Content Director for URBANMISTRII",
     "main": "index.js",
     "scripts": {
-        "start": "npx clawdbot gateway"
+        "start": "mkdir -p /root/.clawdbot && cp -n /app/.clawdbot.skel/* /root/.clawdbot/ || true && npx clawdbot gateway"
     },
     "dependencies": {
         "clawdbot": "latest"

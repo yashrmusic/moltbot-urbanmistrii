@@ -33,7 +33,8 @@ RUN pip3 install -r requirements.txt --break-system-packages
 COPY . .
 
 # Copy config to the location Moltbot expects
-RUN mkdir -p /root/.clawdbot && cp -r .clawdbot/* /root/.clawdbot/ || true
+# Copy config to a staging area (so we can restore it if volume is empty)
+RUN mkdir -p /app/.clawdbot.skel && cp -r .clawdbot/* /app/.clawdbot.skel/ || true
 
 # Environment variable to handle memory safely
 ENV NODE_OPTIONS="--max-old-space-size=1024"
