@@ -53,6 +53,9 @@ echo "--- CONFIG VERIFICATION ---"
 ls -la /root/.clawdbot/
 cat /root/.clawdbot/clawdbot.json
 
+echo "--- RUNNING DOCTOR CHECK ---"
+npx clawdbot doctor --fix || true
+
 echo "--- STARTING GATEWAY ---"
 # Use npx directly with a clean path
 export PATH="$PATH:/app/node_modules/.bin"

@@ -27,6 +27,7 @@ RUN apt-get update && apt-get install -y \
     libgif-dev \
     build-essential \
     g++ \
+    chromium \
     python3 \
     python3-pip \
     git \
@@ -36,6 +37,8 @@ RUN apt-get update && apt-get install -y \
 ENV HOME=/root
 ENV DEBUG=clawdbot:*
 ENV NODE_OPTIONS="--max-old-space-size=1024"
+ENV PUPPETEER_SKIP_DOWNLOAD=true
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
 WORKDIR /app
 
