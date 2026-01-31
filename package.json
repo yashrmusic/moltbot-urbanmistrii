@@ -1,5 +1,5 @@
 {
-    "name": "moltbot-urbanmistrii",
+    "name": "urbanmistrii-content-bot",
     "version": "1.0.0",
     "description": "Headless Content Director for URBANMISTRII",
     "main": "index.js",
