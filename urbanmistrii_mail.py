@@ -77,8 +77,17 @@ if __name__ == "__main__":
         results[account] = get_unread_emails(account, pwd)
     
     # Save results to workspace for Moltbot to read
-    # Save results to workspace for Moltbot to read
-    workspace_path = os.path.join(os.path.expanduser("~"), "moltbot-urbanmistrii", "workspace", "email_inbox.json")
+    # Discovery workspace path (Docker /app/workspace or local/EC2 path)
+    if os.path.exists("/app/workspace"):
+        workspace_dir = "/app/workspace"
+    else:
+        workspace_dir = os.path.join(os.getcwd(), "workspace")
+        if not os.path.exists(workspace_dir):
+            workspace_dir = os.path.join(os.path.expanduser("~"), "moltbot-urbanmistrii", "workspace")
+
+    os.makedirs(workspace_dir, exist_ok=True)
+    workspace_path = os.path.join(workspace_dir, "email_inbox.json")
+    
     with open(workspace_path, "w") as f:
         json.dump(results, f, indent=2)
     

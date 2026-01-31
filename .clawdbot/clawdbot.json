@@ -11,7 +11,7 @@
       "compaction": {
         "mode": "safeguard"
       },
-      "workspace": "/app/workspace",
+      "workspace": "./workspace",
       "model": {
         "primary": "google/gemini-1.5-flash",
         "planner": "google/gemini-1.5-flash",
