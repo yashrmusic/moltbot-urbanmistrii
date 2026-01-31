@@ -54,9 +54,15 @@ ls -la /root/.clawdbot/
 cat /root/.clawdbot/clawdbot.json
 
 echo "--- RUNNING DOCTOR CHECK ---"
-npx clawdbot doctor --fix || true
+./node_modules/.bin/clawdbot doctor --fix || true
 
-echo "--- STARTING GATEWAY ---"
-# Use npx directly with a clean path
-export PATH="$PATH:/app/node_modules/.bin"
-npx clawdbot gateway
+echo "--- LAUNCHING GATEWAY (DIRECT) ---"
+# Bypass npx overhead and run the binary directly
+./node_modules/.bin/clawdbot gateway &
+
+# Wait for process to start
+PID=$!
+echo "--- GATEWAY PID: $PID ---"
+
+# Keep the script alive
+wait $PID
