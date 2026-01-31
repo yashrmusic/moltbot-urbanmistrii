@@ -21,6 +21,12 @@ RUN apt-get update && apt-get install -y \
     libxshmfence1 \
     libglib2.0-0 \
     libglu1-mesa \
+    libcairo2-dev \
+    libjpeg-dev \
+    libpango1.0-dev \
+    libgif-dev \
+    build-essential \
+    g++ \
     python3 \
     python3-pip \
     git \
@@ -29,13 +35,14 @@ RUN apt-get update && apt-get install -y \
 # Fix potential permissions and set environment
 ENV HOME=/root
 ENV DEBUG=clawdbot:*
+ENV NODE_OPTIONS="--max-old-space-size=1024"
 
 WORKDIR /app
 
 # Copy package files
 COPY package.json ./
 
-# Install dependencies
+# Install dependencies (including possible native builds)
 RUN npm install --omit=dev --loglevel verbose
 
 # Copy Python requirements & install
@@ -45,11 +52,11 @@ RUN pip3 install -r requirements.txt --break-system-packages
 # Copy the rest of the project
 COPY . .
 
-# Environment variable to handle memory safely
-ENV NODE_OPTIONS="--max-old-space-size=1024"
+# Make start script executable
+RUN chmod +x /app/start.sh
 
 # Expose Gateway port
 EXPOSE 18789
 
-# Start command with better error handling
-CMD ["npm", "start"]
+# Use the dedicated start script
+CMD ["/bin/bash", "/app/start.sh"]
