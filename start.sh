@@ -10,6 +10,8 @@ npm -v
 echo "--- CREATING CONFIG DIRECTORIES ---"
 mkdir -p /root/.clawdbot /app/workspace
 
+echo "--- CHECKING FOR EXISTING CONFIG ---"
+if [ ! -f /root/.clawdbot/clawdbot.json ]; then
 echo "--- GENERATING CLAWDBOT.JSON ---"
 cat <<EOF > /root/.clawdbot/clawdbot.json
 {
@@ -48,6 +50,9 @@ cat <<EOF > /root/.clawdbot/clawdbot.json
   }
 }
 EOF
+else
+  echo "--- CONFIG ALREADY EXISTS, SKIPPING GENERATION ---"
+fi
 
 echo "--- CONFIG VERIFICATION ---"
 ls -la /root/.clawdbot/
