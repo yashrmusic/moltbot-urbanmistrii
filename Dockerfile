@@ -19,10 +19,16 @@ RUN apt-get update && apt-get install -y \
     libpango-1.0-0 \
     libpangocairo-1.0-0 \
     libxshmfence1 \
+    libglib2.0-0 \
+    libglu1-mesa \
     python3 \
     python3-pip \
     git \
     && rm -rf /var/lib/apt/lists/*
+
+# Fix potential permissions and set environment
+ENV HOME=/root
+ENV DEBUG=clawdbot:*
 
 WORKDIR /app
 
