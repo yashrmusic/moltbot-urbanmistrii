@@ -27,7 +27,7 @@ cat <<EOF > /root/.clawdbot/clawdbot.json
     "defaults": {
       "workspace": "/app/workspace",
       "model": {
-        "primary": "google/gemini-2.0-flash"
+        "primary": "google/gemini-1.5-flash"
       }
     }
   },
