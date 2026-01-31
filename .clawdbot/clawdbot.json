@@ -13,7 +13,7 @@
       },
       "workspace": "/app/workspace",
       "model": {
-        "primary": "google/gemini-2.5-flash"
+        "primary": "google/gemini-1.5-flash"
       }
     }
   },
@@ -59,7 +59,7 @@
     },
     "entries": {
       "nano-banana-pro": {
-        "apiKey": "AIzaSyCnmerxwYYt0vHPM6BWhxGljS2NRhzPpOM"
+        "apiKey": "AIzaSyBHNgWSC4ISvlF2T646NDNh6XJJu9cWVlQ"
       }
     }
   },
