@@ -6,12 +6,17 @@ LABEL framework="clawdbot"
 # Install system dependencies + Python
 RUN apt-get update && apt-get install -y \
     libnss3 \
+    libatk1.0-0 \
     libatk-bridge2.0-0 \
+    libcups2 \
+    libdrm2 \
+    libxkbcommon0 \
     libxcomposite1 \
     libxdamage1 \
     libxrandr2 \
     libgbm1 \
     libasound2 \
+    libpango-1.0-0 \
     libpangocairo-1.0-0 \
     libxshmfence1 \
     python3 \
