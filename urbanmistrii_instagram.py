@@ -2,10 +2,11 @@ import requests
 import sys
 import json
 import time
+import os
 
 # Placeholder Config - Will be replaced by Environment Variables in production
-IG_USER_ID = "YOUR_IG_USER_ID"
-ACCESS_TOKEN = "YOUR_LongLived_ACCESS_TOKEN"
+IG_USER_ID = os.getenv("IG_USER_ID", "YOUR_IG_USER_ID")
+ACCESS_TOKEN = os.getenv("IG_ACCESS_TOKEN", "YOUR_LongLived_ACCESS_TOKEN")
 
 BASE_URL = "https://graph.facebook.com/v21.0"
 

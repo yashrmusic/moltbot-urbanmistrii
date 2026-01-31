@@ -77,7 +77,8 @@ if __name__ == "__main__":
         results[account] = get_unread_emails(account, pwd)
     
     # Save results to workspace for Moltbot to read
-    workspace_path = "/home/ec2-user/moltbot-urbanmistrii/workspace/email_inbox.json"
+    # Save results to workspace for Moltbot to read
+    workspace_path = os.path.join(os.path.expanduser("~"), "moltbot-urbanmistrii", "workspace", "email_inbox.json")
     with open(workspace_path, "w") as f:
         json.dump(results, f, indent=2)
     
