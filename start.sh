@@ -9,11 +9,19 @@ npm -v
 
 echo "--- CREATING CONFIG DIRECTORIES ---"
 mkdir -p /root/.clawdbot /app/workspace
+chmod 700 /root/.clawdbot
 
-echo "--- CHECKING FOR EXISTING CONFIG ---"
+echo "--- EXPORTING CRITICAL ENV VARS ---"
+# This is the most reliable way to bypass config file issues
+export CLAWDBOT_GATEWAY_MODE=local
+export CLAWDBOT_GATEWAY_PORT=18789
+export CLAWDBOT_GATEWAY_AUTH_MODE=token
+export CLAWDBOT_GATEWAY_AUTH_TOKEN=0189e4e6a5381635fcd090b1dbc63ba98542577f5f5abb4c
+export CLAWDBOT_AGENTS_DEFAULTS_MODEL_PRIMARY=google/gemini-1.5-flash
+
+echo "--- ENSURING CONFIG FILE EXISTS (FALLBACK) ---"
 if [ ! -f /root/.clawdbot/clawdbot.json ]; then
-echo "--- GENERATING CLAWDBOT.JSON ---"
-cat <<EOF > /root/.clawdbot/clawdbot.json
+  cat <<EOF > /root/.clawdbot/clawdbot.json
 {
   "gateway": {
     "mode": "local",
@@ -22,52 +30,21 @@ cat <<EOF > /root/.clawdbot/clawdbot.json
       "token": "0189e4e6a5381635fcd090b1dbc63ba98542577f5f5abb4c"
     },
     "port": 18789
-  },
-  "agents": {
-    "defaults": {
-      "workspace": "/app/workspace",
-      "model": {
-        "primary": "google/gemini-1.5-flash"
-      }
-    }
-  },
-  "plugins": {
-    "entries": {
-      "whatsapp": {
-        "enabled": true
-      }
-    }
-  },
-  "hooks": {
-    "internal": {
-      "enabled": true,
-      "entries": {
-        "boot-md": { "enabled": true },
-        "command-logger": { "enabled": true },
-        "session-memory": { "enabled": true }
-      }
-    }
   }
 }
 EOF
-else
-  echo "--- CONFIG ALREADY EXISTS, SKIPPING GENERATION ---"
 fi
-
-echo "--- CONFIG VERIFICATION ---"
-ls -la /root/.clawdbot/
-cat /root/.clawdbot/clawdbot.json
 
 echo "--- RUNNING DOCTOR CHECK ---"
 ./node_modules/.bin/clawdbot doctor --fix || true
 
-echo "--- LAUNCHING GATEWAY (DIRECT) ---"
-# Bypass npx overhead and run the binary directly
-./node_modules/.bin/clawdbot gateway &
+echo "--- LAUNCHING GATEWAY ---"
+# Use direct binary with explicit flags to ensure it never blocks
+./node_modules/.bin/clawdbot gateway --allow-unconfigured &
 
 # Wait for process to start
 PID=$!
 echo "--- GATEWAY PID: $PID ---"
 
-# Keep the script alive
+# Keep alive
 wait $PID
