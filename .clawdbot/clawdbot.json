@@ -63,7 +63,9 @@
         "entries": {
             "nano-banana-pro": {
                 "apiKey": "AIzaSyCnmerxwYYt0vHPM6BWhxGljS2NRhzPpOM"
-            }
+            },
+            "narrative-engine": {},
+            "instagram-publisher": {}
         }
     },
     "hooks": {

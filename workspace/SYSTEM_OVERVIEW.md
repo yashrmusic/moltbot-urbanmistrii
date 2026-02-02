@@ -20,7 +20,7 @@ This document outlines the two distinct AI agents that power UrbanMistrii's oper
 
 ## 2. 📝 UrbanMistrii Admin Bot (Recruitment Hub)
 **Current Project Internal Name**: `urbanmistrii-admin-bot`  
-**Location**: `C:\Users\Asus\Desktop\Hookkapaani New Projects\linkeidn-help`  
+**Location**: `c:\Users\Asus\.gemini\antigravity\scratch\urbanmistrii-admin-bot`  
 **Primary Platform**: **AWS EC2 / VPS**  
 **Identity**: Recruitment & Operations Manager.
 
