@@ -17,8 +17,8 @@ This document serves as the high-level map of the entire automation infrastructu
 - **Current Status**: **ACTIVE (Deployment Phase)**.
 - **Next Step**: Connect Google Apps Script URL.
 
-### 2. 📝 Recruitment Manager (`urbanmistrii-admin-bot`)
-**Path**: `c:\Users\Asus\.gemini\antigravity\scratch\urbanmistrii-admin-bot`
+### 2. 📝 Recruitment Manager (`admin-aws-recruiter-urbanmistrii`)
+**Path**: `c:\Users\Asus\.gemini\antigravity\scratch\admin-aws-recruiter-urbanmistrii`
 **Host**: **Local / AWS EC2** (Dashboard)
 **Role**: "Admin" - The HR Manager.
 - **Goal**: Hiring automation, Offer generation, LinkedIn management.
