@@ -16,6 +16,7 @@ Ensure these are set in your Zeabur Dashboard for the project:
 | `EMAIL_PASS_HR` | Your password for `hr@urbanmistrii.com` |
 | `IG_USER_ID` | Your Instagram Business Account ID |
 | `IG_ACCESS_TOKEN` | Your Meta Long-Lived Access Token |
+| `DRIVE_WEBAPP_URL` | The URL from your UrbanMistriiDrive Apps Script |
 
 ## 📲 WhatsApp Linkage (CRITICAL)
 1. Go to your **Zeabur Dashboard**.
@@ -27,7 +28,8 @@ Ensure these are set in your Zeabur Dashboard for the project:
 ## 💓 Heartbeat & Automation
 The bot is now configured to:
 - **Check Emails**: Every 30 minutes via `urbanmistrii_mail.py`.
-- **Notify User**: Summarize new inquiries and send them to your WhatsApp.
+- **Sync Drive**: Every hour via `urbanmistrii_drive.py`.
+- **Proactive Notifications**: Message you on WhatsApp for new inquiries or projects detected.
 - **Content Creation**: Await your instructions via WhatsApp to generate or publish content.
 
 ---

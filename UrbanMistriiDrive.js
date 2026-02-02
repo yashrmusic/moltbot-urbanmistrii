@@ -36,6 +36,16 @@ function getNewImages() {
 }
 
 /**
+ * doGet handler to serve image list via Web App URL.
+ * Set access to "Anyone" (with secret token recommended).
+ */
+function doGet(e) {
+  const images = getNewImages();
+  return ContentService.createTextOutput(JSON.stringify(images))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+/**
  * Example of how Moltbot will call this:
- * clasp run getNewImages
+ * curl -L https://script.google.com/macros/s/.../exec
  */
