@@ -16,9 +16,6 @@ chmod 700 "$CLAWDBOT_HOME"
 echo "--- EXPORTING CRITICAL ENV VARS ---"
 # Double underscores are the standard for nested config overrides in Clawdbot
 export CLAWDBOT__AGENTS__DEFAULTS__MODEL__PRIMARY=google/gemini-2.5-flash
-export CLAWDBOT__AGENTS__DEFAULTS__MODEL__PLANNER=google/gemini-2.5-flash
-export CLAWDBOT__AGENTS__DEFAULTS__MODEL__CHEAP=google/gemini-2.5-flash
-export CLAWDBOT__AGENTS__DEFAULTS__MODEL__EMBEDDING=google/text-embedding-004
 
 export CLAWDBOT__PLUGINS__ENTRIES__WHATSAPP__ENABLED=true
 export CLAWDBOT__AGENTS__DEFAULTS__WORKSPACE=/app/workspace
@@ -49,10 +46,7 @@ cat <<EOF > "$CLAWDBOT_HOME/clawdbot.json"
     "defaults": {
       "workspace": "$WORKSPACE_DIR",
       "model": {
-        "primary": "google/gemini-2.5-flash",
-        "planner": "google/gemini-2.5-flash",
-        "cheap": "google/gemini-2.5-flash",
-        "embedding": "google/text-embedding-004"
+        "primary": "google/gemini-2.5-flash"
       }
     }
   },
@@ -75,8 +69,6 @@ echo "--- LAUNCHING GATEWAY ---"
 ./node_modules/.bin/clawdbot gateway \
   --allow-unconfigured \
   --model.primary google/gemini-2.5-flash \
-  --model.planner google/gemini-2.5-flash \
-  --model.cheap google/gemini-2.5-flash \
   &
 
 # Wait for process to start

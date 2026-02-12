@@ -24,10 +24,7 @@ cat > "$CLAWDBOT_HOME/clawdbot.json" <<EOC
     "defaults": {
       "workspace": "$WORKSPACE_DIR",
       "model": {
-        "primary": "google/gemini-2.5-flash",
-        "planner": "google/gemini-2.5-flash",
-        "cheap": "google/gemini-2.5-flash",
-        "embedding": "google/text-embedding-004"
+        "primary": "google/gemini-2.5-flash"
       }
     }
   },
