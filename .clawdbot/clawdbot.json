@@ -24,7 +24,7 @@
         "mode": "local",
         "auth": {
             "mode": "token",
-            "token": "0189e4e6a5381635fcd090b1dbc63ba98542577f5f5abb4c"
+        "token": "CHANGE_ME"
         },
         "port": 18789,
         "tailscale": {
@@ -49,11 +49,9 @@
     },
     "channels": {
         "whatsapp": {
-            "selfChatMode": true,
-            "dmPolicy": "allowlist",
-            "allowFrom": [
-                "+919312943581"
-            ]
+    "selfChatMode": true,
+    "dmPolicy": "allowlist",
+    "allowFrom": []
         }
     },
     "skills": {
@@ -61,9 +59,9 @@
             "nodeManager": "bun"
         },
         "entries": {
-            "nano-banana-pro": {
-                "apiKey": "AIzaSyCnmerxwYYt0vHPM6BWhxGljS2NRhzPpOM"
-            },
+        "nano-banana-pro": {
+            "apiKey": ""
+        },
             "narrative-engine": {},
             "instagram-publisher": {}
         }

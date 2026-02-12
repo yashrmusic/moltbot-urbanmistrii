@@ -13,14 +13,23 @@ chmod 700 /root/.clawdbot
 
 echo "--- EXPORTING CRITICAL ENV VARS ---"
 # Double underscores are the standard for nested config overrides in Clawdbot
-export CLAWDBOT__AGENTS__DEFAULTS__MODEL__PRIMARY=google/gemini-1.5-flash
-export CLAWDBOT__AGENTS__DEFAULTS__MODEL__PLANNER=google/gemini-1.5-flash
-export CLAWDBOT__AGENTS__DEFAULTS__MODEL__CHEAP=google/gemini-1.5-flash
+export CLAWDBOT__AGENTS__DEFAULTS__MODEL__PRIMARY=google/gemini-2.5-flash
+export CLAWDBOT__AGENTS__DEFAULTS__MODEL__PLANNER=google/gemini-2.5-flash
+export CLAWDBOT__AGENTS__DEFAULTS__MODEL__CHEAP=google/gemini-2.5-flash
 export CLAWDBOT__AGENTS__DEFAULTS__MODEL__EMBEDDING=google/text-embedding-004
 
 export CLAWDBOT__PLUGINS__ENTRIES__WHATSAPP__ENABLED=true
 export CLAWDBOT__AGENTS__DEFAULTS__WORKSPACE=/app/workspace
-export GEMINI_API_KEY=AIzaSyCnmerxwYYt0vHPM6BWhxGljS2NRhzPpOM
+
+if [ -z "${GEMINI_API_KEY:-}" ]; then
+  echo "ERROR: GEMINI_API_KEY is not set."
+  exit 1
+fi
+
+if [ -z "${CLAWDBOT_TOKEN:-}" ]; then
+  echo "ERROR: CLAWDBOT_TOKEN is not set."
+  exit 1
+fi
 
 echo "--- ENSURING CONFIG FILE EXISTS (FORCE OVERWRITE) ---"
 # We force overwrite every time to ensure the model settings are never stale
@@ -30,7 +39,7 @@ cat <<EOF > /root/.clawdbot/clawdbot.json
     "mode": "local",
     "auth": {
       "mode": "token",
-      "token": "0189e4e6a5381635fcd090b1dbc63ba98542577f5f5abb4c"
+      "token": "${CLAWDBOT_TOKEN}"
     },
     "port": 18789
   },
@@ -38,9 +47,9 @@ cat <<EOF > /root/.clawdbot/clawdbot.json
     "defaults": {
       "workspace": "/app/workspace",
       "model": {
-        "primary": "google/gemini-1.5-flash",
-        "planner": "google/gemini-1.5-flash",
-        "cheap": "google/gemini-1.5-flash",
+        "primary": "google/gemini-2.5-flash",
+        "planner": "google/gemini-2.5-flash",
+        "cheap": "google/gemini-2.5-flash",
         "embedding": "google/text-embedding-004"
       }
     }
@@ -63,9 +72,9 @@ echo "--- LAUNCHING GATEWAY ---"
 # These flags are the highest priority in the configuration hierarchy
 ./node_modules/.bin/clawdbot gateway \
   --allow-unconfigured \
-  --model.primary google/gemini-1.5-flash \
-  --model.planner google/gemini-1.5-flash \
-  --model.cheap google/gemini-1.5-flash \
+  --model.primary google/gemini-2.5-flash \
+  --model.planner google/gemini-2.5-flash \
+  --model.cheap google/gemini-2.5-flash \
   &
 
 # Wait for process to start

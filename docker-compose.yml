@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  moltbot-urbanmistrii:
+    build:
+      context: .
+      dockerfile: Dockerfile.do
+    container_name: urbanmistrii-content-bot
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      WHATSAPP_API_KEY: ${WHATSAPP_API_KEY}
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      INSTAGRAM_ACCESS_TOKEN: ${INSTAGRAM_ACCESS_TOKEN}
+      GOOGLE_DRIVE_FOLDER_ID: ${GOOGLE_DRIVE_FOLDER_ID}
+      GMAIL_ADDRESS: ${GMAIL_ADDRESS}
+      GMAIL_APP_PASSWORD: ${GMAIL_APP_PASSWORD}
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/health', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+volumes:
+  logs:
+  data:

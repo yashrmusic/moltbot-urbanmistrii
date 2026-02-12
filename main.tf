@@ -60,10 +60,10 @@ resource "aws_instance" "moltbot_server" {
               npm install --omit=dev
               pip3 install -r requirements.txt --break-system-packages
 
-              # 5. Set Environment Variables (REPLACE THESE WITH YOUR KEYS BEFORE APPYLING)
-              echo 'export GEMINI_API_KEY="AIzaSyCnmerxwYYt0vHPM6BWhxGljS2NRhzPpOM"' >> /etc/profile
-              echo 'export EMAIL_PASS_MAIL="Rr22081993!"' >> /etc/profile
-              echo 'export EMAIL_PASS_HR="Rr22081993!"' >> /etc/profile
+              # 5. Set Environment Variables (REPLACE THESE WITH YOUR ACTUAL KEYS)
+              echo 'export GEMINI_API_KEY="PASTE_YOUR_GEMINI_KEY"' >> /etc/profile
+              echo 'export EMAIL_PASS_MAIL="PASTE_YOUR_EMAIL_PASSWORD"' >> /etc/profile
+              echo 'export EMAIL_PASS_HR="PASTE_YOUR_HR_EMAIL_PASSWORD"' >> /etc/profile
               
               # 6. Start with PM2
               pm2 start npm --name "moltbot" -- start

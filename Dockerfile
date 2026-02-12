@@ -40,7 +40,7 @@ ENV NODE_OPTIONS="--max-old-space-size=1024"
 ENV PUPPETEER_SKIP_DOWNLOAD=true
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 ENV CLAWDBOT_GATEWAY_MODE=local
-ENV GEMINI_API_KEY=AIzaSyCnmerxwYYt0vHPM6BWhxGljS2NRhzPpOM
+# GEMINI_API_KEY should be passed at runtime via -e or docker-compose, not hardcoded
 
 WORKDIR /app
 

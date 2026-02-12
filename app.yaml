@@ -1,0 +1,52 @@
+name: urbanmistrii-content-bot
+services:
+  - name: moltbot-urbanmistrii
+    github:
+      repo: yashrmusic/moltbot-urbanmistrii
+      branch: main
+    build_command: npm install
+    run_command: npm start
+    http_port: 3000
+    envs:
+      - key: NODE_ENV
+        value: production
+      - key: WHATSAPP_API_KEY
+        value: ${WHATSAPP_API_KEY}
+      - key: GEMINI_API_KEY
+        value: ${GEMINI_API_KEY}
+      - key: CLAWDBOT_TOKEN
+        value: ${CLAWDBOT_TOKEN}
+      - key: INSTAGRAM_ACCESS_TOKEN
+        value: ${INSTAGRAM_ACCESS_TOKEN}
+      - key: GOOGLE_DRIVE_FOLDER_ID
+        value: ${GOOGLE_DRIVE_FOLDER_ID}
+      - key: GMAIL_ADDRESS
+        value: ${GMAIL_ADDRESS}
+      - key: GMAIL_APP_PASSWORD
+        value: ${GMAIL_APP_PASSWORD}
+    resources:
+      memory_mb: 512
+      cpu_cores: 0.25
+
+envs:
+  - key: WHATSAPP_API_KEY
+    scope: RUN_AND_BUILD_TIME
+    secret: true
+  - key: GEMINI_API_KEY
+    scope: RUN_AND_BUILD_TIME
+    secret: true
+  - key: CLAWDBOT_TOKEN
+    scope: RUN_AND_BUILD_TIME
+    secret: true
+  - key: INSTAGRAM_ACCESS_TOKEN
+    scope: RUN_AND_BUILD_TIME
+    secret: true
+  - key: GOOGLE_DRIVE_FOLDER_ID
+    scope: RUN_AND_BUILD_TIME
+    secret: true
+  - key: GMAIL_ADDRESS
+    scope: RUN_AND_BUILD_TIME
+    secret: true
+  - key: GMAIL_APP_PASSWORD
+    scope: RUN_AND_BUILD_TIME
+    secret: true
