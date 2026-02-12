@@ -4,7 +4,7 @@
     "description": "Headless Content Director for URBANMISTRII",
     "main": "index.js",
     "scripts": {
-        "start": "bash /app/start.sh"
+        "start": "bash ./start.sh"
     },
     "dependencies": {
         "clawdbot": "latest"

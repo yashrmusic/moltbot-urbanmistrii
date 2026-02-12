@@ -8,8 +8,10 @@ node -v
 npm -v
 
 echo "--- CREATING CONFIG DIRECTORIES ---"
-mkdir -p /root/.clawdbot /app/workspace
-chmod 700 /root/.clawdbot
+CLAWDBOT_HOME="${HOME}/.clawdbot"
+WORKSPACE_DIR="$(pwd)/workspace"
+mkdir -p "$CLAWDBOT_HOME" "$WORKSPACE_DIR"
+chmod 700 "$CLAWDBOT_HOME"
 
 echo "--- EXPORTING CRITICAL ENV VARS ---"
 # Double underscores are the standard for nested config overrides in Clawdbot
@@ -33,7 +35,7 @@ fi
 
 echo "--- ENSURING CONFIG FILE EXISTS (FORCE OVERWRITE) ---"
 # We force overwrite every time to ensure the model settings are never stale
-cat <<EOF > /root/.clawdbot/clawdbot.json
+cat <<EOF > "$CLAWDBOT_HOME/clawdbot.json"
 {
   "gateway": {
     "mode": "local",
@@ -45,7 +47,7 @@ cat <<EOF > /root/.clawdbot/clawdbot.json
   },
   "agents": {
     "defaults": {
-      "workspace": "/app/workspace",
+      "workspace": "$WORKSPACE_DIR",
       "model": {
         "primary": "google/gemini-2.5-flash",
         "planner": "google/gemini-2.5-flash",
